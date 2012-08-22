@@ -1,0 +1,4 @@
+GInspector
+==========
+
+Groovy object Inspector
