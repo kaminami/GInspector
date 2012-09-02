@@ -21,8 +21,8 @@ You can send messages to Groovy(Java) objects.
 import tools.ginspector.GInspector
 
 def anObject = [1, 2, 3]
-GInspector.openWaitOn(anObject)
 GInspector.openOn(anObject)
+GInspector.openWaitOn(anObject)
 ```
 
 ```groovy
