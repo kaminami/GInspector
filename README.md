@@ -5,7 +5,7 @@ GInspector is a object inspector for Groovy(Java) environment.
 You can send messages to Groovy(Java) objects.
 
 
-![Alt text](./screenshot01.png)
+![Alt text](./GInspector/screenshot01.png)
 
 ## Requirements
 
