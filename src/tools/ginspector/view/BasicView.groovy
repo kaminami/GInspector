@@ -33,12 +33,12 @@ class BasicView {
 		return this.inspectorView.inspector.object
 	}
 
-    def getMyName() {
-        return this.inspectorView.inspector.pseudoVarName
-    }
+	def getMyName() {
+		return this.inspectorView.inspector.pseudoVarName
+	}
 
 
-    def getBinding() {
+	def getBinding() {
 		return this.inspectorView.inspector.bindingForEvaluate()
 	}
 	
@@ -132,28 +132,28 @@ class BasicView {
 	
 	def buildTableMenu() {
 		this.tableMenu = this.createPopUpMenuOn(this.table, this.inspectorView.shell)
-        this.addMenuItem(this.tableMenu, 'Inspect selected object\tCtrl-Q', SWT.CTRL + ('Q' as char),  {SelectionEvent e -> this.inspectItem()})
-    }
+		this.addMenuItem(this.tableMenu, 'Inspect selected object\tCtrl-Q', SWT.CTRL + ('Q' as char),  {SelectionEvent e -> this.inspectItem()})
+	}
 
-    def inspectItem() {
-        if (this.table.getSelection().size() == 0) { return }
+	def inspectItem() {
+		if (this.table.getSelection().size() == 0) { return }
 
-        TableItem selectedItem = this.table.getSelection().first()
-        String selector = selectedItem.getText(0)
-        def selectedModel = this.getBinding()[selector]
+		TableItem selectedItem = this.table.getSelection().first()
+		String selector = selectedItem.getText(0)
+		def selectedModel = this.getBinding()[selector]
 
-        GInspector.openOn(selectedModel)
-    }
+		GInspector.openOn(selectedModel)
+	}
 
 	def addSelectedEventListener() {
-        def listener = [:]
-        listener['widgetSelected'] = {SelectionEvent e ->
-            TableItem selectedItem = this.table.getSelection().first()
-            String selector = selectedItem.getText(0)
-            def selectedObj = this.getBinding()[selector]
+		def listener = [:]
+		listener['widgetSelected'] = {SelectionEvent e ->
+			TableItem selectedItem = this.table.getSelection().first()
+			String selector = selectedItem.getText(0)
+			def selectedObj = this.getBinding()[selector]
 
-            this.valueArea.setText(selectedObj.toString())
-        }
+			this.valueArea.setText(selectedObj.toString())
+		}
 		this.table.addSelectionListener(listener as SelectionAdapter)
 	}
 }

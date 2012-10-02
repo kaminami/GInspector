@@ -85,25 +85,25 @@ class CollectionView {
 	}
 	
 	def buildTableMenu() {
-        this.tableMenu = this.createPopUpMenuOn(this.table, this.inspectorView.shell)
-        this.addMenuItem(this.tableMenu, 'Inspect',  {SelectionEvent e -> this.inspectItem()})
+		this.tableMenu = this.createPopUpMenuOn(this.table, this.inspectorView.shell)
+		this.addMenuItem(this.tableMenu, 'Inspect',  {SelectionEvent e -> this.inspectItem()})
 	}
 
-    def inspectItem() {
-        if (this.table.getSelection().size() == 0) { return }
+	def inspectItem() {
+		if (this.table.getSelection().size() == 0) { return }
 
-        TableItem selectedItem = this.table.getSelection().first()
-        def value = this.tableCache[selectedItem]
-        GInspector.openOn(value)
-    }
+		TableItem selectedItem = this.table.getSelection().first()
+		def value = this.tableCache[selectedItem]
+		GInspector.openOn(value)
+	}
 
 	def addSelectedEventListener() {
-        def listener = [:]
-        listener['widgetSelected'] = {SelectionEvent e ->
-            TableItem selectedItem = this.table.getSelection().first()
-            def value = this.tableCache[selectedItem]
-            this.valueArea.setText(value.toString())
-        }
+		def listener = [:]
+		listener['widgetSelected'] = {SelectionEvent e ->
+			TableItem selectedItem = this.table.getSelection().first()
+			def value = this.tableCache[selectedItem]
+			this.valueArea.setText(value.toString())
+		}
 		this.table.addSelectionListener(listener as SelectionAdapter)
 	}
 }
