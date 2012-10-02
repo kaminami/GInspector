@@ -159,4 +159,12 @@ class TextAreaView {
 		return lines[this.textArea.getCaretLineNumber()]
 	}
 
+	def insertTextAtCaret(String aString) {
+		def pos = this.textArea.getCaretPosition()
+		def currentText = this.textArea.getText()
+		def pre = currentText.take(pos)
+		def post = currentText.substring(pos)
+
+		this.textArea.setText(pre + aString + post)
+	}
 }

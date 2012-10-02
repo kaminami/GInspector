@@ -115,6 +115,7 @@ class MethodsView {
 	def buildTableMenu() {
 		this.tableMenu = this.createPopUpMenuOn(this.table, this.inspectorView.shell)
 		this.addMenuItem(this.tableMenu, 'Copy method name',  {SelectionEvent e -> this.copyMethodName()})
+		this.addMenuItem(this.tableMenu, 'Insert method name',  {SelectionEvent e -> this.insertMethodName()})
 	}
 
 	def copyMethodName() {
@@ -125,5 +126,14 @@ class MethodsView {
 
 		Clipboard clipboard = new Clipboard(this.inspectorView.display)
 		clipboard.setContents([selector] as Object[], [TextTransfer.getInstance()] as Transfer[]);
+	}
+
+	def insertMethodName() {
+		if (this.table.getSelection().size() == 0) { return }
+
+		TableItem selectedItem = this.table.getSelection().first()
+		String selector = selectedItem.getText(0)
+
+		this.inspectorView.textAreaView.insertTextAtCaret(selector)
 	}
 }
