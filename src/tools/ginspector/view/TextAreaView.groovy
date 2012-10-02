@@ -58,7 +58,7 @@ class TextAreaView {
 	}
 
     def evaluate(aString) {
-        return (new GroovyShell(this.getBinding())).evaluate(aString)
+        return (new GroovyShell(this.getClass().getClassLoader(), this.getBinding())).evaluate(aString)
     }
 
     def displayErrorMessage(Exception ex, start, stop) {
