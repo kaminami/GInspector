@@ -37,7 +37,6 @@ class BasicView {
 		return this.inspectorView.inspector.pseudoVarName
 	}
 
-
 	def getBinding() {
 		return this.inspectorView.inspector.bindingForEvaluate()
 	}

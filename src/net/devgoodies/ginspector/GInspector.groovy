@@ -113,12 +113,7 @@ class GInspector {
 	}
 	
 	Object valueOf(Field field) {
-		AccessController.doPrivileged(new PrivilegedAction() {
-			public Object run() {
-				field.setAccessible(true)
-				return null
-			}
-		})
+		AccessController.doPrivileged({field.setAccessible(true)} as PrivilegedAction)
 
 		def res = null
 		try {
@@ -132,7 +127,7 @@ class GInspector {
 	
 	Binding bindingForEvaluate() {
 		def map = [:]
-		map[this.pseudoVarName]= this.object
+		map[this.pseudoVarName] = this.object
 
 		this.allMetaFields().each {PropertyValue pv ->
 			try {
