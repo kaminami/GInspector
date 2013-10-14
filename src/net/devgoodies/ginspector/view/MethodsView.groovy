@@ -7,6 +7,7 @@ import org.eclipse.swt.dnd.Clipboard
 import org.eclipse.swt.dnd.Transfer
 import org.eclipse.swt.dnd.TextTransfer
 import org.eclipse.swt.events.SelectionEvent
+import org.eclipse.swt.widgets.Composite
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Table
 import org.eclipse.swt.widgets.TableColumn
@@ -32,7 +33,7 @@ class MethodsView {
 		return this.inspectorView.inspector.object
 	}
 	
-	def buildOn(component) {
+	def buildOn(Composite component) {
 		CTabItem tab = new CTabItem(component, SWT.NONE)
 		tab.setText("Methods")
 		

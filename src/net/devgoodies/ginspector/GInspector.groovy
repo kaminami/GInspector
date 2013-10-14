@@ -8,6 +8,7 @@ import java.security.AccessController
 import org.codehaus.groovy.runtime.InvokerHelper
 import org.codehaus.groovy.runtime.DefaultGroovyMethods
 
+
 import net.devgoodies.ginspector.view.InspectorView
 
 class GInspector {
@@ -142,10 +143,6 @@ class GInspector {
 		}
 
 		return (new Binding(map))
-	}
-
-	Object evaluate(String code) {
-		return (new GroovyShell(this.bindingForEvaluate()).evaluate(code))
 	}
 
 	Map methodInfoFrom(Method method) {

@@ -4,6 +4,7 @@ import org.eclipse.swt.SWT
 import org.eclipse.swt.events.SelectionEvent
 import org.eclipse.swt.layout.GridData
 import org.eclipse.swt.widgets.Menu
+import org.eclipse.swt.widgets.Composite
 import org.eclipse.swt.widgets.Text
 
 import net.devgoodies.ginspector.GInspector
@@ -27,7 +28,7 @@ class TextAreaView {
 		return this.inspectorView.inspector.bindingForEvaluate()
 	}
 	
-	def buildOn(component) {
+	def buildOn(Composite component) {
 		this.textArea = new Text(component, SWT.MULTI | SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL)
 		GridData gridData = new GridData()
 		gridData.horizontalAlignment = GridData.FILL
@@ -57,30 +58,28 @@ class TextAreaView {
 		this.addMenuItem(this.textAreaMenu, 'Select all\tCtrl-A',  {SelectionEvent e -> this.selectAll()})
 	}
 
-	def evaluate(aString) {
-		return (new GroovyShell(this.getClass().getClassLoader(), this.getBinding())).evaluate(aString)
+	def evaluate(String groovyCode) {
+		return (new GroovyShell(this.getClass().getClassLoader(), this.getBinding())).evaluate(groovyCode)
 	}
 
-	def displayErrorMessage(Exception ex, start, stop) {
-		def errorMessage = ex.getMessage()
-
-		def pre = this.textArea.getText(0, stop - 1)
-		def post = this.textArea.getText(stop, this.textArea.getText().size())
-		def newText = pre + errorMessage + post
+	def displayThenSelectMessage(String message, int start, int stop) {
+		String pre = this.textArea.getText(0, stop - 1)
+        String post = this.textArea.getText(stop, this.textArea.getText().size())
+        String newText = pre + message + post
 
 		this.textArea.setText(newText)
-		this.textArea.setSelection(pre.size(), pre.size() + errorMessage.size())
+		this.textArea.setSelection(pre.size(), pre.size() + message.size())
 	}
 
 	def doIt() {
 		def (selectedString, start, stop) = this.textWithRangeForEvaluate()
-		if (selectedString.trim().si == 0) { return }
+		if (selectedString.trim().size() == 0) { return }
 
 		try {
 			this.evaluate(selectedString)
 			this.textArea.setSelection(start, stop)
 		} catch (Exception ex) {
-			this.displayErrorMessage(ex, start, stop)
+			this.displayThenSelectMessage(ex.getMessage(), start, stop)
 		}
 	}
 
@@ -92,17 +91,11 @@ class TextAreaView {
 		try {
 			resultObj = this.evaluate(selectedString)
 		} catch (Exception ex) {
-			this.displayErrorMessage(ex, start, stop)
+			this.displayThenSelectMessage(ex.getMessage(), start, stop)
 			return
 		}
 
-		def pre = this.textArea.getText(0, stop - 1)
-		def post = this.textArea.getText(stop, this.textArea.getText().size())
-		def resultStr = resultObj.toString()
-		def newText = pre + resultStr + post
-
-		this.textArea.setText(newText)
-		this.textArea.setSelection(pre.size(), pre.size() + resultStr.size())
+        this.displayThenSelectMessage(resultObj.toString(), start, stop);
 	}
 
 	def inspectIt() {
@@ -114,7 +107,7 @@ class TextAreaView {
 			resultObj = this.evaluate(selectedString)
 			this.textArea.setSelection(start, stop)
 		} catch (Exception ex) {
-			this.displayErrorMessage(ex, start, stop)
+			this.displayThenSelectMessage(ex.getMessage(), start, stop)
 			return
 		}
 
