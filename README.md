@@ -1,7 +1,7 @@
 GInspector
 ==========
 
-GInspector is an object inspector for Groovy(Java) environment.
+GInspector is a graphical object inspector for Groovy(Java) environment.
 You can send messages to Groovy(Java) objects.
 
 ## Requirements
