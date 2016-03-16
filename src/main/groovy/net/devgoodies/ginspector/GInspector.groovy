@@ -146,7 +146,7 @@ class GInspector {
         }
 
         this.allFields().each {Field f ->
-            map[f.getName()] = this.valueOf(f)
+            map.put(f.getName(), this.valueOf(f))
         }
 
         return (new Binding(map))
