@@ -31,7 +31,8 @@ GInspector.installShortcut()
 ### Caution
 In GInspector, use 'self' instead of 'this'.
 
-# Gradle
+
+### Gradle build.gradle example
 ```groovy
 # build.gradle (minimum)
 apply plugin: 'groovy'
