@@ -32,22 +32,23 @@ GInspector.installShortcut()
 In GInspector, use 'self' instead of 'this'.
 
 # Gradle
-  # build.gradle (minimum)
-  apply plugin: 'groovy'
+```groovy
+# build.gradle (minimum)
+apply plugin: 'groovy'
 
-  repositories {
-      jcenter()
+repositories {
+    jcenter()
 
-      maven { 
-          url 'https://github.com/kaminami/GInspector/raw/master/repository' 
-      }
-  }
-
-  dependencies {
-      compile 'org.codehaus.groovy:groovy-all:2.4.7'
-      compile 'net.devgoodies:ginspector:1.0.0'
+    maven { 
+        url 'https://github.com/kaminami/GInspector/raw/master/repository' 
+    }
 }
 
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.7'
+    compile 'net.devgoodies:ginspector:1.0.0'
+}
+```
 
 ## License
 MIT
