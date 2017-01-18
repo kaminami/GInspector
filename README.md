@@ -20,7 +20,7 @@ GInspector.openWaitOn(anObject)
 ```
 
 ```groovy
-import net.devgoodies.ginspector.GInspectorCategory
+import net.devgoodies.ginspector.GInspector
 
 GInspector.installShortcut()
 
@@ -32,6 +32,24 @@ GInspector.installShortcut()
 In GInspector, use 'self' instead of 'this'.
 
 
+### Gradle build.gradle example
+```groovy
+# build.gradle (minimum)
+apply plugin: 'groovy'
+
+repositories {
+    jcenter()
+
+    maven { 
+        url 'https://github.com/kaminami/GInspector/raw/master/repository' 
+    }
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.7'
+    compile 'net.devgoodies:ginspector:1.0.0'
+}
+```
 
 ## License
 MIT
