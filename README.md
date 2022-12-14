@@ -7,29 +7,19 @@ You can send messages to Groovy(Java) objects.
 ## Requirements
 
 * [Groovy](http://groovy.codehaus.org/)
-  - versions: 2.2.1 or later
+  - versions: 4 or later
 
 
 ## Usage
 ```groovy
-import net.devgoodies.ginspector.GInspector
+import ginspector.GInspector
 
-def anObject = [1, 2, 3]
-GInspector.openOn(anObject)
-GInspector.openWaitOn(anObject)
-```
-
-```groovy
-import net.devgoodies.ginspector.GInspector
-
-GInspector.installShortcut()
-
-[1, 2, 3]._i()
-['a':1, 'b':2]._iw()
+GInspector.openOn([1, 2, 3])
+GInspector.openWaitOn(['a':1, 'b':2])
 ```
 
 ### Caution
-In GInspector, use 'self' instead of 'this'.
+In GInspector, use '_this' instead of 'this'.
 
 
 ### Gradle build.gradle example
@@ -38,7 +28,7 @@ In GInspector, use 'self' instead of 'this'.
 apply plugin: 'groovy'
 
 repositories {
-    jcenter()
+    mavenCentral()
 
     maven { 
         url 'https://github.com/kaminami/GInspector/raw/master/repository' 
@@ -46,10 +36,11 @@ repositories {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.4.7'
-    compile 'net.devgoodies:ginspector:1.0.0'
+    implementation 'org.apache.groovy:groovy-all:4.0.6'
+    implementation 'net.devgoodies:ginspector:2.0.0'
 }
 ```
 
+
 ## License
-MIT
+Apache License Version 2.0
