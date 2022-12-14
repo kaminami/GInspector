@@ -1,10 +1,10 @@
-package net.devgoodies.ginspector.view
+package ginspector.view
 
 import groovy.swing.SwingBuilder
 
 import javax.swing.JPopupMenu
 
-import net.devgoodies.ginspector.GInspector
+import ginspector.GInspector
 
 
 class MapValueView extends AbstractValueView {

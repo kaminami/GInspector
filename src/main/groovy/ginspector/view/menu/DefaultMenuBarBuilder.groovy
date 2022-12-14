@@ -1,11 +1,11 @@
-package net.devgoodies.ginspector.view.menu
+package ginspector.view.menu
 
 import groovy.swing.SwingBuilder
 import javax.swing.Action
 import javax.swing.JMenu
 import javax.swing.JMenuBar
 
-import net.devgoodies.ginspector.view.InspectorFrame
+import ginspector.view.InspectorFrame
 
 class DefaultMenuBarBuilder {
     SwingBuilder sb

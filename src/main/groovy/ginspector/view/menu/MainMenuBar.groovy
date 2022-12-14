@@ -1,9 +1,9 @@
-package net.devgoodies.ginspector.view.menu
+package ginspector.view.menu
 
 import javax.swing.JMenuBar
 import javax.swing.UIManager
 
-import net.devgoodies.ginspector.view.InspectorFrame
+import ginspector.view.InspectorFrame
 
 
 class MainMenuBar {

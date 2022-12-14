@@ -1,9 +1,9 @@
-package net.devgoodies.ginspector.view
+package ginspector.view
 
 import java.lang.reflect.Field
 import java.lang.reflect.Modifier
 
-import net.devgoodies.ginspector.GInspector
+import ginspector.GInspector
 
 class BasicValueView extends AbstractValueView {
     static final String NAME = 'Name'

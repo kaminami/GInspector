@@ -1,4 +1,4 @@
-package net.devgoodies.ginspector.view
+package ginspector.view
 
 import groovy.swing.SwingBuilder
 
@@ -9,7 +9,7 @@ import javax.swing.JScrollPane
 import javax.swing.JTextArea
 import java.awt.Font
 
-import net.devgoodies.ginspector.GInspector
+import ginspector.GInspector
 
 
 class EditorView extends JPanel {

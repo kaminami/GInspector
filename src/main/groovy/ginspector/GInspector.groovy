@@ -1,4 +1,4 @@
-package net.devgoodies.ginspector
+package ginspector
 
 import java.lang.reflect.Field
 import java.lang.reflect.Method
@@ -8,12 +8,12 @@ import java.security.AccessController
 import org.codehaus.groovy.runtime.InvokerHelper
 import org.codehaus.groovy.runtime.DefaultGroovyMethods
 
-import net.devgoodies.ginspector.view.InspectorFrame
+import ginspector.view.InspectorFrame
 
 
 class GInspector {
     final Object object
-    final String pseudoVarName = 'self'
+    final String pseudoVarName = '_this'
     final String appName = 'GInspector'
 
     static Object openOn(Object obj) {
@@ -32,10 +32,6 @@ class GInspector {
             Thread.sleep(200)
         }
         return obj
-    }
-
-    static void installShortcut() {
-        ShortcutInstaller.install()
     }
 
     GInspector(Object obj) {

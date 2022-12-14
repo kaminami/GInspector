@@ -1,6 +1,5 @@
-package net.devgoodies.ginspector.view
+package ginspector.view
 
-import groovy.swing.SwingBuilder
 
 import javax.swing.JFrame
 import javax.swing.JMenuBar
@@ -9,8 +8,8 @@ import javax.swing.JTabbedPane
 import javax.swing.UIManager
 import java.awt.Font
 
-import net.devgoodies.ginspector.GInspector
-import net.devgoodies.ginspector.view.menu.MainMenuBar
+import ginspector.GInspector
+import ginspector.view.menu.MainMenuBar
 
 
 

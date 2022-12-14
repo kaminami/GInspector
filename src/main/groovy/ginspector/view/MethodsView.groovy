@@ -1,4 +1,4 @@
-package net.devgoodies.ginspector.view
+package ginspector.view
 
 import groovy.swing.SwingBuilder
 
@@ -20,7 +20,7 @@ import java.awt.event.KeyListener
 import java.awt.event.MouseEvent
 import java.awt.event.MouseListener
 
-import net.devgoodies.ginspector.GInspector
+import ginspector.GInspector
 
 
 

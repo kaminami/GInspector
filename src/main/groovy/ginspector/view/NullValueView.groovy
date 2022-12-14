@@ -1,6 +1,6 @@
-package net.devgoodies.ginspector.view
+package ginspector.view
 
-import net.devgoodies.ginspector.GInspector
+import ginspector.GInspector
 
 class NullValueView extends AbstractValueView {
     static final String NAME = 'Name'
