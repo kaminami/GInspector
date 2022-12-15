@@ -19,14 +19,14 @@ class ListValueView extends AbstractValueView {
 
     @Override
     List<Map> buildFieldMaps() {
-        List self =  this.inspector.object.toList()
-        def fieldMaps = []
+        List self = this.inspector.object.toList()
+        List fieldMaps = []
 
         self.eachWithIndex {value, idx ->
-            def map = [:]
+            Map map = [:]
             map[INDEX] = idx
             map[VALUE] = value
-            map[VALUE_TYPE] = value.getClass().getName()
+            map[VALUE_TYPE] = value.getClass().getSimpleName()
 
             fieldMaps.add(map)
         }
@@ -36,7 +36,7 @@ class ListValueView extends AbstractValueView {
 
     @Override
     Object selectedObject() {
-        def index = valueTable.getSelectedRow()
+        int index = valueTable.getSelectedRow()
         def obj = this.inspector.object[index]
         return obj
     }

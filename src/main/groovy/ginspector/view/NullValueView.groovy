@@ -18,9 +18,9 @@ class NullValueView extends AbstractValueView {
 
     @Override
     List<Map> buildFieldMaps() {
-        def fieldMaps = []
+        Map fieldMaps = []
 
-        def selfMap = [:]
+        Map selfMap = [:]
         selfMap[NAME] = inspector.pseudoVarName;
         selfMap[TYPE] = 'n/a'
         selfMap[VALUE] = 'null'

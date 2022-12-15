@@ -1,6 +1,5 @@
 package ginspector.view
 
-
 import javax.swing.JFrame
 import javax.swing.JMenuBar
 import javax.swing.JSplitPane
@@ -10,7 +9,6 @@ import java.awt.Font
 
 import ginspector.GInspector
 import ginspector.view.menu.MainMenuBar
-
 
 
 class InspectorFrame extends JFrame {
@@ -61,11 +59,11 @@ class InspectorFrame extends JFrame {
         this.buildMainMenu()
         this.buildToolBar()
 
-        def splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT)
+        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT)
         splitPane.setDividerLocation((DEFAULT_HEIGHT * 0.7) as int)
         this.add(splitPane)
 
-        def tabView = this.buildTab()
+        JTabbedPane tabView = this.buildTab()
         this.editorView = this.buildEditorView()
 
         splitPane.setTopComponent(tabView)
@@ -180,19 +178,19 @@ class InspectorFrame extends JFrame {
     }
 
     void addMapTab(JTabbedPane tabbedPane) {
-        def view = new MapValueView(this.inspector, this)
+        MapValueView view = new MapValueView(this.inspector, this)
         tabbedPane.addTab('Map', view)
         this.extraValueView = view
     }
 
     void addListTab(JTabbedPane tabbedPane) {
-        def view = new ListValueView(this.inspector, this)
+        ListValueView view = new ListValueView(this.inspector, this)
         tabbedPane.addTab('List', view)
         this.extraValueView = view
     }
 
     void addGenericCollectionTab(JTabbedPane tabbedPane) {
-        def view = new CollectionValueView(this.inspector, this)
+        CollectionValueView view = new CollectionValueView(this.inspector, this)
         tabbedPane.addTab('Collection', view)
         this.extraValueView = view
     }

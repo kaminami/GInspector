@@ -2,6 +2,7 @@ package ginspector.view
 
 import groovy.swing.SwingBuilder
 
+import javax.swing.Action
 import javax.swing.BoxLayout
 import javax.swing.JPanel
 import javax.swing.JPopupMenu
@@ -14,6 +15,7 @@ import javax.swing.ListSelectionModel
 import javax.swing.event.ListSelectionEvent
 import javax.swing.event.ListSelectionListener
 import javax.swing.table.DefaultTableModel
+import javax.swing.table.TableModel
 import javax.swing.table.TableRowSorter
 import java.awt.Component
 import java.awt.Font
@@ -77,7 +79,7 @@ abstract class AbstractValueView extends JPanel {
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION)
         table.setRowSelectionAllowed(true)
 
-        def sorter = new TableRowSorter<AbstractTableModel>(tm)
+        TableRowSorter sorter = new TableRowSorter<AbstractTableModel>(tm)
         table.setRowSorter(sorter)
 
         ListSelectionListener selectionListener = {ListSelectionEvent event ->
@@ -116,7 +118,7 @@ abstract class AbstractValueView extends JPanel {
     }
 
     int indexOfColumnNamed(String columnName) {
-        def tb = this.valueTable.getModel()
+        TableModel tb = this.valueTable.getModel()
         for (int i = 0; i < tb.getColumnCount(); i++) {
             String nm = tb.getColumnName(i)
             if (nm == columnName) { return i }
@@ -129,7 +131,7 @@ abstract class AbstractValueView extends JPanel {
         if (! event.isPopupTrigger()) { return }
         if (this.valueTable.selectedRow < 0) { return }
 
-        def menu = new JPopupMenu()
+        JPopupMenu menu = new JPopupMenu()
         this.addValueTableMenuItemsOn(menu)
         menu.show(event.component, event.x, event.y)
     }
@@ -142,7 +144,7 @@ abstract class AbstractValueView extends JPanel {
     }
 
     void searchRowFor(String prefix) {
-        def table = this.valueTable
+        JTable table = this.valueTable
         int from = Math.max(table.selectedRow, -1)
 
         for (int i = from + 1; i < table.model.size(); i++) {
@@ -170,7 +172,7 @@ abstract class AbstractValueView extends JPanel {
     void addValueTableMenuItemsOn(JPopupMenu menu) {
         SwingBuilder sb = new SwingBuilder()
 
-        def inspectAction = sb.action(
+        Action inspectAction = sb.action(
                 name: 'Inspect',
                 shortDescription: 'Inspect selected object',
                 closure: {event -> inspectSelectedObject()}
@@ -196,7 +198,7 @@ abstract class AbstractValueView extends JPanel {
     void addValueTextAreaMenuItemsOn(JPopupMenu menu) {
         SwingBuilder sb = new SwingBuilder()
 
-        def copyAction = sb.action(
+        Action copyAction = sb.action(
                 name: 'Copy',
                 closure: {event -> this.valueTextArea.copy()}
         )
@@ -223,7 +225,7 @@ abstract class AbstractValueView extends JPanel {
         }
 
         this.buildFieldMaps().each {map ->
-            def row = this.columnNames().inject([]) {List list, String columnName ->
+            List row = this.columnNames().inject([]) {List list, String columnName ->
                 list << map[columnName]
             }
             tm.addRow(row as Vector)
@@ -239,7 +241,7 @@ abstract class AbstractValueView extends JPanel {
 
         this.valueTextArea.font = newFont
 
-        def table = this.valueTable
+        JTable table = this.valueTable
         table.tableHeader.font = newFont
         table.font = newFont
 

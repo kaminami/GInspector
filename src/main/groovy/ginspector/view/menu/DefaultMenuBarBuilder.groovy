@@ -32,7 +32,7 @@ class DefaultMenuBarBuilder {
         JMenu menu = sb.menu('Object')
         menuBar.add(menu)
 
-        def refreshAction = sb.action(
+        Action refreshAction = sb.action(
                 name: 'Refresh',
                 closure: {event -> frame.refresh()},
                 accelerator: sb.shortcut('R')
@@ -55,21 +55,21 @@ class DefaultMenuBarBuilder {
         JMenu menu = sb.menu('Edit')
         menuBar.add(menu)
 
-        def copyAction = sb.action(
+        Action copyAction = sb.action(
                 name: 'Copy',
                 closure: {event -> frame.copy()},
                 accelerator: sb.shortcut('C')
         )
         menu.add(copyAction)
 
-        def cutAction = sb.action(
+        Action cutAction = sb.action(
                 name: 'Cut',
                 closure: {event -> frame.cut()},
                 accelerator: sb.shortcut('X')
         )
         menu.add(cutAction)
 
-        def pasteAction = sb.action(
+        Action pasteAction = sb.action(
                 name: 'Paste',
                 closure: {event -> frame.paste()},
                 accelerator: sb.shortcut('V')
@@ -81,14 +81,14 @@ class DefaultMenuBarBuilder {
         JMenu menu = sb.menu('View')
         menuBar.add(menu)
 
-        def largerFontAction = sb.action(
+        Action largerFontAction = sb.action(
                 name: 'Larger Font',
                 closure: {event -> frame.largerFont()},
                 accelerator: sb.shortcut('shift L')
         )
         menu.add(largerFontAction)
 
-        def smallerFontAction = sb.action(
+        Action smallerFontAction = sb.action(
                 name: 'Smaller Font',
                 closure: {event -> frame.smallerFont()},
                 accelerator: sb.shortcut('shift S')
@@ -100,21 +100,21 @@ class DefaultMenuBarBuilder {
         JMenu menu = sb.menu('Script')
         menuBar.add(menu)
 
-        def doItAction = sb.action(
+        Action doItAction = sb.action(
                 name: 'Do It',
                 closure: {event -> frame.doIt()},
                 accelerator: sb.shortcut('D')
         )
         menu.add(doItAction)
 
-        def printItAction = sb.action(
+        Action printItAction = sb.action(
                 name: 'Print It',
                 closure: {event -> frame.printIt()},
                 accelerator: sb.shortcut('P')
         )
         menu.add(printItAction)
 
-        def inspectItAction = sb.action(
+        Action inspectItAction = sb.action(
                 name: 'Inspect It',
                 closure: {event -> frame.inspectIt()},
                 accelerator: sb.shortcut('I')
