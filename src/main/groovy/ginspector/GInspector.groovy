@@ -72,7 +72,9 @@ class GInspector {
     }
 
     List withAllSuperclasses() {
-        if (this.object == null) { return [] }
+        if (this.object == null) {
+            return []
+        }
 
         List list = this.allSuperclasses()
         list.add(0, this.object.getClass())
@@ -80,7 +82,9 @@ class GInspector {
     }
 
     List allSuperclasses() {
-        if (this.object == null) { return [] }
+        if (this.object == null) {
+            return []
+        }
 
         List classes = []
         Class current = this.object.getClass().getSuperclass()
@@ -112,7 +116,7 @@ class GInspector {
         if (this.object == null) { return [] }
 
         List metaFields = DefaultGroovyMethods.getMetaPropertyValues(this.object)
-        return metaFields.findAll { PropertyValue propertyValue -> propertyValue.getName() != 'metaClass'}
+        return metaFields.findAll { PropertyValue propertyValue -> propertyValue.getName() != 'metaClass' }
     }
 
     boolean isValidField(Field field) {
@@ -125,11 +129,11 @@ class GInspector {
     }
 
     Object valueOf(Field field) {
-        AccessController.doPrivileged({field.setAccessible(true)} as PrivilegedAction)
+        AccessController.doPrivileged({ field.setAccessible(true) } as PrivilegedAction)
 
         try {
             return field.get(this.object)
-        } catch (Exception e){
+        } catch (Exception e) {
             // ignore
         }
 
