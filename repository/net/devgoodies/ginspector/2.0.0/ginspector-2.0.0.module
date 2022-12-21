@@ -1,0 +1,69 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "net.devgoodies",
+    "module": "ginspector",
+    "version": "2.0.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.5.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "ginspector-2.0.0.jar",
+          "url": "ginspector-2.0.0.jar",
+          "size": 132686,
+          "sha512": "5e253efbfa207cee23ed95be856bf59ba5a81faa8f646940f29b3a5efe00ed576f1fe73d2e1c10f661297bf07aa640026e468eb18b9e404f9678f72d06d055b6",
+          "sha256": "ce2fe4d1fdebe4086cec85514962ad02826a348b60481ebc1188c1aa943b8cb9",
+          "sha1": "eff70a2eebc517ac35417d96375a8616550608fd",
+          "md5": "a7aef8e7ddcfdbc1d535ea043b924166"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.apache.groovy",
+          "module": "groovy-all",
+          "version": {
+            "requires": "4.0.6"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "ginspector-2.0.0.jar",
+          "url": "ginspector-2.0.0.jar",
+          "size": 132686,
+          "sha512": "5e253efbfa207cee23ed95be856bf59ba5a81faa8f646940f29b3a5efe00ed576f1fe73d2e1c10f661297bf07aa640026e468eb18b9e404f9678f72d06d055b6",
+          "sha256": "ce2fe4d1fdebe4086cec85514962ad02826a348b60481ebc1188c1aa943b8cb9",
+          "sha1": "eff70a2eebc517ac35417d96375a8616550608fd",
+          "md5": "a7aef8e7ddcfdbc1d535ea043b924166"
+        }
+      ]
+    }
+  ]
+}
