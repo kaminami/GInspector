@@ -1,6 +1,6 @@
-package net.devgoodies.ginspector.view
+package ginspector.view
 
-import net.devgoodies.ginspector.GInspector
+import ginspector.GInspector
 
 
 class CollectionValueView extends AbstractValueView {
@@ -18,13 +18,13 @@ class CollectionValueView extends AbstractValueView {
 
     @Override
     List<Map> buildFieldMaps() {
-        List self =  this.inspector.object.toList()
-        def fieldMaps = []
+        List self = this.inspector.object as List
+        List fieldMaps = []
 
-        self.each {value ->
-            def map = [:]
+        self.each { value ->
+            Map map = [:]
             map[VALUE] = value
-            map[VALUE_TYPE] = value.getClass().getName()
+            map[VALUE_TYPE] = value.getClass().getSimpleName()
 
             fieldMaps.add(map)
         }

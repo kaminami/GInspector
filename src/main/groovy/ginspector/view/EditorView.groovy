@@ -1,7 +1,8 @@
-package net.devgoodies.ginspector.view
+package ginspector.view
 
 import groovy.swing.SwingBuilder
 
+import javax.swing.Action
 import javax.swing.BoxLayout
 import javax.swing.JPanel
 import javax.swing.JPopupMenu
@@ -9,7 +10,7 @@ import javax.swing.JScrollPane
 import javax.swing.JTextArea
 import java.awt.Font
 
-import net.devgoodies.ginspector.GInspector
+import ginspector.GInspector
 
 
 class EditorView extends JPanel {
@@ -51,34 +52,34 @@ class EditorView extends JPanel {
     void addEditorMenuItemsOn(JPopupMenu menu) {
         SwingBuilder sb = new SwingBuilder()
 
-        def copyAction = sb.action(
+        Action copyAction = sb.action(
                 name: 'Copy',
-                closure: {event -> this.copy()}
+                closure: { event -> this.copy() }
         )
 
-        def cutAction = sb.action(
+        Action cutAction = sb.action(
                 name: 'Cut',
-                closure: {event -> this.cut()}
+                closure: { event -> this.cut() }
         )
 
-        def pasteAction = sb.action(
+        Action pasteAction = sb.action(
                 name: 'Paste',
-                closure: {event -> this.paste()}
+                closure: { event -> this.paste() }
         )
 
-        def doItAction = sb.action(
+        Action doItAction = sb.action(
                 name: 'Do It',
-                closure: {event -> this.doIt()}
+                closure: { event -> this.doIt() }
         )
 
-        def printItAction = sb.action(
+        Action printItAction = sb.action(
                 name: 'Print It',
-                closure: {event -> this.printIt()}
+                closure: { event -> this.printIt() }
         )
 
-        def inspectItAction = sb.action(
+        Action inspectItAction = sb.action(
                 name: 'Inspect It',
-                closure: {event -> this.inspectIt()}
+                closure: { event -> this.inspectIt() }
         )
 
         menu.add(copyAction)
@@ -91,16 +92,16 @@ class EditorView extends JPanel {
     }
 
     String selectedTextForEvaluate() {
-        def ea = this.editorArea
+        JTextArea ea = this.editorArea
 
-        def st = ea.selectedText ?: ''
-        if (! st.isEmpty()) { return st }
+        String st = ea.selectedText ?: ''
+        if (!st.isEmpty()) { return st }
 
-        def lineNum = ea.getLineOfOffset(ea.caretPosition)
-        def start = ea.getLineStartOffset(lineNum)
-        def stop = ea.getLineEndOffset(lineNum)
-        def lines = ea.text.substring(start, stop).readLines()
-        def extracted = lines.isEmpty() ? '' : lines.first() // remove LF, CR, CRLF
+        int lineNum = ea.getLineOfOffset(ea.caretPosition)
+        int start = ea.getLineStartOffset(lineNum)
+        int stop = ea.getLineEndOffset(lineNum)
+        List lines = ea.text.substring(start, stop).readLines()
+        String extracted = lines.isEmpty() ? '' : lines.first() // remove LF, CR, CRLF
 
         ea.select(start, start + extracted.size())
 

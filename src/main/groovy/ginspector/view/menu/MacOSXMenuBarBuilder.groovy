@@ -1,6 +1,6 @@
-package net.devgoodies.ginspector.view.menu
+package ginspector.view.menu
 
-import net.devgoodies.ginspector.view.InspectorFrame
+import ginspector.view.InspectorFrame
 
 
 class MacOSXMenuBarBuilder extends DefaultMenuBarBuilder {

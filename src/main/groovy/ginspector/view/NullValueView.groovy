@@ -1,6 +1,6 @@
-package net.devgoodies.ginspector.view
+package ginspector.view
 
-import net.devgoodies.ginspector.GInspector
+import ginspector.GInspector
 
 class NullValueView extends AbstractValueView {
     static final String NAME = 'Name'
@@ -18,9 +18,9 @@ class NullValueView extends AbstractValueView {
 
     @Override
     List<Map> buildFieldMaps() {
-        def fieldMaps = []
+        Map fieldMaps = []
 
-        def selfMap = [:]
+        Map selfMap = [:]
         selfMap[NAME] = inspector.pseudoVarName;
         selfMap[TYPE] = 'n/a'
         selfMap[VALUE] = 'null'

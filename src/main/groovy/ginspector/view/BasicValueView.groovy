@@ -1,9 +1,9 @@
-package net.devgoodies.ginspector.view
+package ginspector.view
 
 import java.lang.reflect.Field
 import java.lang.reflect.Modifier
 
-import net.devgoodies.ginspector.GInspector
+import ginspector.GInspector
 
 class BasicValueView extends AbstractValueView {
     static final String NAME = 'Name'
@@ -25,22 +25,22 @@ class BasicValueView extends AbstractValueView {
     @Override
     List<Map> buildFieldMaps() {
         Binding binding = this.inspector.bindingForEvaluate()
-        def fieldMaps = []
+        List fieldMaps = []
 
-        def selfMap = [:]
+        Map selfMap = [:]
         def self = this.inspector.object
         selfMap[NAME] = inspector.pseudoVarName;
-        selfMap[TYPE] = (self ? self.getClass().getName() : 'n/a')
+        selfMap[TYPE] = (self ? self.getClass().getSimpleName() : 'n/a')
         selfMap[MODIFIERS] = ''
         selfMap[DECLARER] = ''
         selfMap[VALUE] = self.toString()
         fieldMaps.add(selfMap)
 
-        def metaFields = this.inspector.allMetaFields()
-        metaFields.sort{it.getName()}.each {PropertyValue pv ->
-            def map = [:]
+        List metaFields = this.inspector.allMetaFields()
+        metaFields.sort { PropertyValue pv -> pv.getName() }.each { PropertyValue pv ->
+            Map map = [:]
             map[NAME] = pv.getName()
-            map[TYPE] = pv.getType().getName()
+            map[TYPE] = pv.getType().getSimpleName()
             map[MODIFIERS] = 'public'
             map[DECLARER] = 'n/a'
             map[VALUE] = binding.getProperty(pv.getName()).toString()
@@ -48,9 +48,9 @@ class BasicValueView extends AbstractValueView {
             fieldMaps.add(map)
         }
 
-        def fields = this.inspector.allFields()
-        fields.sort{it.getName()}.each {Field field ->
-            def map = [:]
+        List fields = this.inspector.allFields()
+        fields.sort { Field field -> field.getName() }.each { Field field ->
+            Map map = [:]
             map[NAME] = field.getName()
             map[TYPE] = field.getType().getName()
             map[MODIFIERS] = Modifier.toString(field.getModifiers())

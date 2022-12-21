@@ -1,10 +1,11 @@
-package net.devgoodies.ginspector.view
+package ginspector.view
 
 import groovy.swing.SwingBuilder
 
+import javax.swing.Action
 import javax.swing.JPopupMenu
 
-import net.devgoodies.ginspector.GInspector
+import ginspector.GInspector
 
 
 class MapValueView extends AbstractValueView {
@@ -24,15 +25,15 @@ class MapValueView extends AbstractValueView {
 
     @Override
     List<Map> buildFieldMaps() {
-        Map self =  this.inspector.object
-        def fieldMaps = []
+        Map self = this.inspector.object
+        List fieldMaps = []
 
-        self.each {key, value ->
-            def map = [:]
+        self.each { key, value ->
+            Map map = [:]
             map[KEY] = key
-            map[KEY_TYPE] = key.getClass().getName()
+            map[KEY_TYPE] = key.getClass().getSimpleName()
             map[VALUE] = value
-            map[VALUE_TYPE] = value.getClass().getName()
+            map[VALUE_TYPE] = value.getClass().getSimpleName()
             fieldMaps.add(map)
         }
 
@@ -42,16 +43,16 @@ class MapValueView extends AbstractValueView {
     void addValueTableMenuItemsOn(JPopupMenu menu) {
         SwingBuilder sb = new SwingBuilder()
 
-        def inspectKeyAction = sb.action(
+        Action inspectKeyAction = sb.action(
                 name: 'Inspect Key',
                 shortDescription: 'Inspect selected key',
-                closure: {event -> inspectSelectedKey()}
+                closure: { event -> inspectSelectedKey() }
         )
 
-        def inspectValueAction = sb.action(
+        Action inspectValueAction = sb.action(
                 name: 'Inspect Value',
                 shortDescription: 'Inspect selected value',
-                closure: {event -> inspectSelectedValue()}
+                closure: { event -> inspectSelectedValue() }
         )
 
         menu.add(inspectKeyAction)

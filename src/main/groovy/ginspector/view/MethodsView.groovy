@@ -1,7 +1,8 @@
-package net.devgoodies.ginspector.view
+package ginspector.view
 
 import groovy.swing.SwingBuilder
 
+import javax.swing.Action
 import javax.swing.BoxLayout
 import javax.swing.JPanel
 import javax.swing.JPopupMenu
@@ -9,6 +10,7 @@ import javax.swing.JScrollPane
 import javax.swing.JTable
 import javax.swing.ListSelectionModel
 import javax.swing.table.DefaultTableModel
+import javax.swing.table.TableModel
 import javax.swing.table.TableRowSorter
 import java.awt.Component
 import java.awt.Font
@@ -20,8 +22,7 @@ import java.awt.event.KeyListener
 import java.awt.event.MouseEvent
 import java.awt.event.MouseListener
 
-import net.devgoodies.ginspector.GInspector
-
+import ginspector.GInspector
 
 
 class MethodsView extends JPanel {
@@ -63,15 +64,15 @@ class MethodsView extends JPanel {
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION)
         table.setRowSelectionAllowed(true)
 
-        def sorter = new TableRowSorter<DefaultTableModel>(tm)
+        TableRowSorter sorter = new TableRowSorter<DefaultTableModel>(tm)
         table.setRowSorter(sorter)
 
-        MouseListener mouseListener = {MouseEvent event ->
+        MouseListener mouseListener = { MouseEvent event ->
             handleMethodsTableMouseEvent(event)
         } as MouseListener
         table.addMouseListener(mouseListener)
 
-        KeyListener keyListener = {KeyEvent event ->
+        KeyListener keyListener = { KeyEvent event ->
             handleMethodsTableKeyEvent(event)
         } as KeyListener
         table.addKeyListener(keyListener)
@@ -81,13 +82,13 @@ class MethodsView extends JPanel {
 
     DefaultTableModel buildTableModel() {
         def tm = new DefaultTableModel((this.columnNames() as Vector), 0) {
-            public boolean isCellEditable(int row, int column) {
+            boolean isCellEditable(int row, int column) {
                 return false
             }
         }
 
-        this.buildFieldMaps().each {map ->
-            def row = this.columnNames().inject([]) {List list, String columnName ->
+        this.buildFieldMaps().each { Map map ->
+            List row = this.columnNames().inject([]) { List list, String columnName ->
                 list << map[columnName]
             }
             tm.addRow(row as Vector)
@@ -104,7 +105,7 @@ class MethodsView extends JPanel {
         if (! event.isPopupTrigger()) { return }
         if (this.methodsTable.selectedRow < 0) { return }
 
-        def menu = new JPopupMenu()
+        JPopupMenu menu = new JPopupMenu()
         this.addMethodsTableMenuItemsOn(menu)
         menu.show(event.component, event.x, event.y)
     }
@@ -112,9 +113,9 @@ class MethodsView extends JPanel {
     void addMethodsTableMenuItemsOn(JPopupMenu menu) {
         SwingBuilder sb = new SwingBuilder()
 
-        def copyMethodNameAction = sb.action(
+        Action copyMethodNameAction = sb.action(
                 name: 'Copy Method Name',
-                closure: {event -> this.copySelectedMethodName()}
+                closure: { event -> this.copySelectedMethodName() }
         )
 
         menu.add(copyMethodNameAction)
@@ -135,7 +136,7 @@ class MethodsView extends JPanel {
     }
 
     int indexOfColumnNamed(String columnName) {
-        def tb = this.methodsTable.getModel()
+        TableModel tb = this.methodsTable.getModel()
         for (int i = 0; i < tb.getColumnCount(); i++) {
             String nm = tb.getColumnName(i)
             if (nm == columnName) { return i }
@@ -145,14 +146,14 @@ class MethodsView extends JPanel {
     }
 
     void handleMethodsTableKeyEvent(KeyEvent event) {
-        if (event.getID() != KeyEvent.KEY_RELEASED) { return; }
+        if (event.getID() != KeyEvent.KEY_RELEASED) { return }
 
         String prefix = event.keyChar.toString().toUpperCase()
         this.searchRowFor(prefix)
     }
 
     void searchRowFor(String prefix) {
-        def table = this.methodsTable
+        JTable table = this.methodsTable
         int from = Math.max(table.selectedRow, -1)
 
         for (int i = from + 1; i < table.model.size(); i++) {
@@ -184,12 +185,11 @@ class MethodsView extends JPanel {
     void applyCurrentFont() {
         Font newFont = this.parentFrame.currentFont
 
-        def table = this.methodsTable
+        JTable table = this.methodsTable
         table.tableHeader.font = newFont
         table.font = newFont
 
-        for (int row = 0; row < table.getRowCount(); row++)
-        {
+        for (int row = 0; row < table.getRowCount(); row++) {
             int rowHeight = table.getRowHeight();
             Component component = table.prepareRenderer(table.getCellRenderer(row, 0), row, 0);
             rowHeight = Math.max(rowHeight, component.getPreferredSize().height);
