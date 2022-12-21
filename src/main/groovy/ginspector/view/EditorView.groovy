@@ -54,32 +54,32 @@ class EditorView extends JPanel {
 
         Action copyAction = sb.action(
                 name: 'Copy',
-                closure: {event -> this.copy()}
+                closure: { event -> this.copy() }
         )
 
         Action cutAction = sb.action(
                 name: 'Cut',
-                closure: {event -> this.cut()}
+                closure: { event -> this.cut() }
         )
 
         Action pasteAction = sb.action(
                 name: 'Paste',
-                closure: {event -> this.paste()}
+                closure: { event -> this.paste() }
         )
 
         Action doItAction = sb.action(
                 name: 'Do It',
-                closure: {event -> this.doIt()}
+                closure: { event -> this.doIt() }
         )
 
         Action printItAction = sb.action(
                 name: 'Print It',
-                closure: {event -> this.printIt()}
+                closure: { event -> this.printIt() }
         )
 
         Action inspectItAction = sb.action(
                 name: 'Inspect It',
-                closure: {event -> this.inspectIt()}
+                closure: { event -> this.inspectIt() }
         )
 
         menu.add(copyAction)
@@ -95,7 +95,7 @@ class EditorView extends JPanel {
         JTextArea ea = this.editorArea
 
         String st = ea.selectedText ?: ''
-        if (! st.isEmpty()) { return st }
+        if (!st.isEmpty()) { return st }
 
         int lineNum = ea.getLineOfOffset(ea.caretPosition)
         int start = ea.getLineStartOffset(lineNum)

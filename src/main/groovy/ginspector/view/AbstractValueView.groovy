@@ -64,7 +64,7 @@ abstract class AbstractValueView extends JPanel {
 
     DefaultTableModel buildTableModel() {
         def tm = new DefaultTableModel((this.columnNames() as Vector), 0) {
-            public boolean isCellEditable(int row, int column) {
+            boolean isCellEditable(int row, int column) {
                 return false
             }
         }
@@ -73,7 +73,7 @@ abstract class AbstractValueView extends JPanel {
     }
 
     JTable buildValueTable() {
-        def tm = this.buildTableModel()
+        DefaultTableModel tm = this.buildTableModel()
 
         JTable table = new JTable(tm)
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION)
@@ -82,17 +82,17 @@ abstract class AbstractValueView extends JPanel {
         TableRowSorter sorter = new TableRowSorter<AbstractTableModel>(tm)
         table.setRowSorter(sorter)
 
-        ListSelectionListener selectionListener = {ListSelectionEvent event ->
+        ListSelectionListener selectionListener = { ListSelectionEvent event ->
             handleValueTableSelectionEvent(event)
         } as ListSelectionListener
         table.getSelectionModel().addListSelectionListener(selectionListener)
 
-        MouseListener mouseListener = {MouseEvent event ->
+        MouseListener mouseListener = { MouseEvent event ->
             handleValueTableMouseEvent(event)
         } as MouseListener
         table.addMouseListener(mouseListener)
 
-        KeyListener keyListener = {KeyEvent event ->
+        KeyListener keyListener = { KeyEvent event ->
             handleValueTableKeyEvent(event)
         } as KeyListener
         table.addKeyListener(keyListener)
@@ -224,8 +224,8 @@ abstract class AbstractValueView extends JPanel {
             tm.setRowCount(0)
         }
 
-        this.buildFieldMaps().each {map ->
-            List row = this.columnNames().inject([]) {List list, String columnName ->
+        this.buildFieldMaps().each { Map map ->
+            List row = this.columnNames().inject([]) { List list, String columnName ->
                 list << map[columnName]
             }
             tm.addRow(row as Vector)

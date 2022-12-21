@@ -27,18 +27,10 @@ class GInspectorTest {
         GInspector.openWaitOn(aString)
     }
 
+
     @Test
-    void testEvaluate() {
-        def obj = 'hello'
-
-        Binding binding = new Binding()
-        binding.setVariable('_this', obj)
-
-        String scriptString = '''
-            println _this
-'''
-
-        GroovyShell shell = new GroovyShell(this.getClass().getClassLoader(), binding)
-        shell.evaluate(scriptString)
+    void testOpenThenOpenWait() {
+        GInspector.openOn('open')
+        GInspector.openWaitOn('openWait')
     }
 }

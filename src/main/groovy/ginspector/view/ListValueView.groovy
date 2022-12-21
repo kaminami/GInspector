@@ -19,10 +19,10 @@ class ListValueView extends AbstractValueView {
 
     @Override
     List<Map> buildFieldMaps() {
-        List self = this.inspector.object.toList()
+        List self = this.inspector.object as List
         List fieldMaps = []
 
-        self.eachWithIndex {value, idx ->
+        self.eachWithIndex { Object value, int idx ->
             Map map = [:]
             map[INDEX] = idx
             map[VALUE] = value

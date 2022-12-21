@@ -18,7 +18,7 @@ class CollectionValueView extends AbstractValueView {
 
     @Override
     List<Map> buildFieldMaps() {
-        List self =  this.inspector.object as List
+        List self = this.inspector.object as List
         List fieldMaps = []
 
         self.each { value ->

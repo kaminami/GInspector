@@ -25,7 +25,7 @@ class MapValueView extends AbstractValueView {
 
     @Override
     List<Map> buildFieldMaps() {
-        Map self =  this.inspector.object
+        Map self = this.inspector.object
         List fieldMaps = []
 
         self.each { key, value ->
@@ -46,13 +46,13 @@ class MapValueView extends AbstractValueView {
         Action inspectKeyAction = sb.action(
                 name: 'Inspect Key',
                 shortDescription: 'Inspect selected key',
-                closure: {event -> inspectSelectedKey()}
+                closure: { event -> inspectSelectedKey() }
         )
 
         Action inspectValueAction = sb.action(
                 name: 'Inspect Value',
                 shortDescription: 'Inspect selected value',
-                closure: {event -> inspectSelectedValue()}
+                closure: { event -> inspectSelectedValue() }
         )
 
         menu.add(inspectKeyAction)

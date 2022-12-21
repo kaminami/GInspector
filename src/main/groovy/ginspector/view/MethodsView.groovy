@@ -67,12 +67,12 @@ class MethodsView extends JPanel {
         TableRowSorter sorter = new TableRowSorter<DefaultTableModel>(tm)
         table.setRowSorter(sorter)
 
-        MouseListener mouseListener = {MouseEvent event ->
+        MouseListener mouseListener = { MouseEvent event ->
             handleMethodsTableMouseEvent(event)
         } as MouseListener
         table.addMouseListener(mouseListener)
 
-        KeyListener keyListener = {KeyEvent event ->
+        KeyListener keyListener = { KeyEvent event ->
             handleMethodsTableKeyEvent(event)
         } as KeyListener
         table.addKeyListener(keyListener)
@@ -87,7 +87,7 @@ class MethodsView extends JPanel {
             }
         }
 
-        this.buildFieldMaps().each {map ->
+        this.buildFieldMaps().each { Map map ->
             List row = this.columnNames().inject([]) { List list, String columnName ->
                 list << map[columnName]
             }
@@ -115,7 +115,7 @@ class MethodsView extends JPanel {
 
         Action copyMethodNameAction = sb.action(
                 name: 'Copy Method Name',
-                closure: {event -> this.copySelectedMethodName()}
+                closure: { event -> this.copySelectedMethodName() }
         )
 
         menu.add(copyMethodNameAction)
@@ -146,7 +146,7 @@ class MethodsView extends JPanel {
     }
 
     void handleMethodsTableKeyEvent(KeyEvent event) {
-        if (event.getID() != KeyEvent.KEY_RELEASED) { return; }
+        if (event.getID() != KeyEvent.KEY_RELEASED) { return }
 
         String prefix = event.keyChar.toString().toUpperCase()
         this.searchRowFor(prefix)
@@ -189,8 +189,7 @@ class MethodsView extends JPanel {
         table.tableHeader.font = newFont
         table.font = newFont
 
-        for (int row = 0; row < table.getRowCount(); row++)
-        {
+        for (int row = 0; row < table.getRowCount(); row++) {
             int rowHeight = table.getRowHeight();
             Component component = table.prepareRenderer(table.getCellRenderer(row, 0), row, 0);
             rowHeight = Math.max(rowHeight, component.getPreferredSize().height);

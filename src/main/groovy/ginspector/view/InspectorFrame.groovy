@@ -153,7 +153,7 @@ class InspectorFrame extends JFrame {
     void addBasicTab(JTabbedPane tabbedPane) {
         def obj = this.inspector.object
         def view = (obj == null) ? new NullValueView(this.inspector, this)
-                                 : new BasicValueView(this.inspector, this)
+                : new BasicValueView(this.inspector, this)
 
         tabbedPane.addTab('Basic', view)
         this.basicValueView = view
@@ -201,8 +201,9 @@ class InspectorFrame extends JFrame {
 
     void updateTitle() {
         def obj = this.target
-        def str = (obj == null) ? "null :${this.inspector.appName}"
-                                : "${obj} (${obj.class}) :${this.inspector.appName}"
+        def str = (obj == null)
+                            ? "null :${this.inspector.appName}"
+                            : "${obj} (${obj.class}) :${this.inspector.appName}"
 
         this.setTitle(str)
     }
@@ -220,11 +221,13 @@ class InspectorFrame extends JFrame {
 
         if (obj instanceof Range) { return false } // check before List
         if (obj instanceof List) { return true }
+
         return false
     }
 
     Boolean isCollection(Object obj) {
         if (obj instanceof Range) { return false }
+
         return (obj instanceof Collection)
     }
 }

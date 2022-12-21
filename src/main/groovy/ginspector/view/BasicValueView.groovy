@@ -37,7 +37,7 @@ class BasicValueView extends AbstractValueView {
         fieldMaps.add(selfMap)
 
         List metaFields = this.inspector.allMetaFields()
-        metaFields.sort{ PropertyValue pv -> pv.getName() }.each { PropertyValue pv ->
+        metaFields.sort { PropertyValue pv -> pv.getName() }.each { PropertyValue pv ->
             Map map = [:]
             map[NAME] = pv.getName()
             map[TYPE] = pv.getType().getSimpleName()
@@ -49,7 +49,7 @@ class BasicValueView extends AbstractValueView {
         }
 
         List fields = this.inspector.allFields()
-        fields.sort{ Field field -> field.getName()}.each { Field field ->
+        fields.sort { Field field -> field.getName() }.each { Field field ->
             Map map = [:]
             map[NAME] = field.getName()
             map[TYPE] = field.getType().getName()

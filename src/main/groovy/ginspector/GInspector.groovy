@@ -65,8 +65,8 @@ class GInspector {
         if (this.object == null) { return [] }
 
         List list = []
-        this.allMethods().each { list.add(this.methodInfoFrom(it)) }
-        this.allMetaMethods().each { list.add(this.methodInfoFrom(it)) }
+        this.allMethods().each { Object[] info -> list.add(this.methodInfoFrom(info)) }
+        this.allMetaMethods().each { Object[] info -> list.add(this.methodInfoFrom(info)) }
 
         return list
     }
@@ -97,10 +97,10 @@ class GInspector {
         if (this.object == null) { return [] }
 
         List list = []
-        this.withAllSuperclasses().each {Class klass ->
-            klass.getDeclaredFields().each {f ->
-                if (this.isValidField(f)) {
-                    list.add(f)
+        this.withAllSuperclasses().each { Class klass ->
+            klass.getDeclaredFields().each { Field field ->
+                if (this.isValidField(field)) {
+                    list.add(field)
                 }
             }
         }
@@ -112,14 +112,14 @@ class GInspector {
         if (this.object == null) { return [] }
 
         List metaFields = DefaultGroovyMethods.getMetaPropertyValues(this.object)
-        return metaFields.findAll {it.getName() != 'metaClass'}
+        return metaFields.findAll { PropertyValue propertyValue -> propertyValue.getName() != 'metaClass'}
     }
 
-    boolean isValidField(Field f) {
-        int modifiers = f.getModifiers()
+    boolean isValidField(Field field) {
+        int modifiers = field.getModifiers()
         if (Modifier.isStatic(modifiers)) { return false }
         if (Modifier.isFinal(modifiers) && Modifier.isPrivate(modifiers)) { return false }
-        if ((this.object instanceof GroovyObject) && f.getName().equals('metaClass')) { return false }
+        if ((this.object instanceof GroovyObject) && field.getName().equals('metaClass')) { return false }
 
         return true
     }
@@ -127,14 +127,13 @@ class GInspector {
     Object valueOf(Field field) {
         AccessController.doPrivileged({field.setAccessible(true)} as PrivilegedAction)
 
-        def res = null
         try {
-            res = field.get(this.object)
+            return field.get(this.object)
         } catch (Exception e){
-            res = 'n/a'
+            // ignore
         }
 
-        return res
+        return 'n/a'
     }
 
     Binding bindingForEvaluate() {
@@ -156,7 +155,7 @@ class GInspector {
         return (new Binding(map))
     }
 
-    Map methodInfoFrom(String[] methodInfo) {
+    Map methodInfoFrom(Object[] methodInfo) {
         Map map = [:]
 
         map['Origin'] = methodInfo[MEMBER_ORIGIN_IDX]
