@@ -64,6 +64,46 @@
           "md5": "a7aef8e7ddcfdbc1d535ea043b924166"
         }
       ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "ginspector-2.0.0-javadoc.jar",
+          "url": "ginspector-2.0.0-javadoc.jar",
+          "size": 261,
+          "sha512": "23a72b52932ff6c580b27fd65464a22953fcd239f66ed429c3da937ae20b42b0b9aa2d4db4bed50b3e8c47a95155d7f0b454d5fc92d841a650ea41ccd2a8269f",
+          "sha256": "76a108a6bdd34666741627e566d42cdaa831439f72f28ce6b45387afc3ea923e",
+          "sha1": "9eb38cc228be970693be5d19dca246b6754c9e56",
+          "md5": "1a044550ea482b1f8a647f4eb44f9120"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "ginspector-2.0.0-sources.jar",
+          "url": "ginspector-2.0.0-sources.jar",
+          "size": 13854,
+          "sha512": "e2a3e395842c4cde37d4a5801f1a466a3b01d0090880470277684c09c21b44de5c9de3098f851d2420cccbbce2118b4d8e5534dd532acbb986676dbe1a6b9300",
+          "sha256": "ecb70cad9d98f1d457fa791bd3a1d044b9da3899c42a2c35cb2b2da7f566eca3",
+          "sha1": "9a6cffafdf5e0b6fa879963484ab9c04ab303151",
+          "md5": "f7c78dcaeb3fbb2f9fed45ef78aa0619"
+        }
+      ]
     }
   ]
 }
