@@ -1,5 +1,7 @@
-apply plugin: 'groovy'
-//apply plugin: 'maven'
+plugins {
+    id 'groovy'
+    id 'maven-publish'
+}
 
 repositories {
     mavenCentral()
@@ -12,18 +14,18 @@ dependencies {
 }
 
 
+group = 'net.devgoodies'
+version = '2.0.0'
 
-//
-//def repo = new File(rootDir, "repository")
-//
-//uploadArchives {
-//    repositories {
-//        mavenDeployer {
-//            repository url: "file://${repo.absolutePath}"
-//            pom.version = '1.0.0'
-//            pom.groupId = 'net.devgoodies'
-//            pom.artifactId = 'ginspector'
-//        }
-//    }
-//}
-
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url './repository'
+        }
+    }
+}
